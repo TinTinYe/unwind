@@ -21,6 +21,12 @@ class EditTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+         if let addIn = addIn {
+                   nameTextField.text = addIn.name
+                   WeightTextField.text = addIn.weight.description
+                   beautySwitch.isOn = addIn.beauty
+               }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

@@ -21,8 +21,14 @@ class MainTableViewController: UITableViewController {
     
     @IBAction func unwindToEditTableView(segue: UIStoryboardSegue){
         if let source = segue.source as? EditTableViewController, let addIn = source.addIn{
+            if let indexPath = tableView.indexPathForSelectedRow {
+                           addIns[indexPath.row] = addIn
+                           tableView.reloadRows(at: [indexPath], with: .automatic)
+            } else{
+
             addIns.insert(addIn, at: 0)
-            tableView.reloadData()
+            let newIndexPath = IndexPath(row: 0, section: 0)
+                tableView.insertRows(at:[newIndexPath], with: .automatic)}
         }
         
     }
@@ -104,5 +110,13 @@ class MainTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           
+           if let controller = segue.destination as? EditTableViewController, let row = tableView.indexPathForSelectedRow?.row {
+               controller.addIn = addIns[row]
+               
+           }
+           
+       }
+    
 }
