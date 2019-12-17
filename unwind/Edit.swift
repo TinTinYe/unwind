@@ -11,4 +11,5 @@ struct AddIn {
     var name:String
     var beauty: Bool
     var weight: Double
+    
 }
